@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "238864067018",
+    "project_id": "interview-2d053",
+    "storage_bucket": "interview-2d053.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238864067018:android:c1c1d8d35ecaab8d414733",
+        "android_client_info": {
+          "package_name": "com.example.interview_prg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoW-aqRDlgK50blywTmC6F5Pj3yLx5LAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
