@@ -4,28 +4,28 @@ import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+class HomeScreenState extends State<HomeScreen> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   User? user;
-  int _counter = 0;
+  int counter = 0;
 
   @override
   void initState() {
     super.initState();
-    _loadCounterValue();
+    loadCounterValue();
   }
 
-  void _loadCounterValue() async {
-    user = _auth.currentUser;
+  void loadCounterValue() async {
+    user = auth.currentUser;
     if (user != null) {
-      DocumentSnapshot userData = await _firestore.collection('users').doc(user!.uid).get();
+      DocumentSnapshot userData = await firestore.collection('users').doc(user!.uid).get();
       if (userData.exists) {
         setState(() {
-          _counter = userData['counter'] ?? 0;
+          counter = userData['counter'] ?? 0;
         });
       }
     }
@@ -33,11 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _incrementCounter() async {
     setState(() {
-      _counter++;
+      counter++;
     });
     if (user != null) {
-      await _firestore.collection('users').doc(user!.uid).set({
-        'counter': _counter,
+      await firestore.collection('users').doc(user!.uid).set({
+        'counter': counter,
       }, SetOptions(merge: true));
     }
   }
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () {
-              _auth.signOut();
+              auth.signOut();
               Navigator.pushReplacementNamed(context, '/login');
             },
           ),
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Current Value: $_counter',
+              'Current Value: $counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 20),
